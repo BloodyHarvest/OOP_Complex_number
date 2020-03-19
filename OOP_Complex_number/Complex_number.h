@@ -336,7 +336,7 @@ void Complex<T1>::print_complex_number()
 	case EXP_FORM:
 		indication = getExpForm();
 		cout << "Exp form:";
-		cout << "z=" << indication[0] << "*e^i*" << indication[1] << "ï" << "\n";
+		cout << "z=" << indication[0] << "*e^i*" << indication[1] << "pi" << "\n";
 		break;
 	}
 }
