@@ -5,6 +5,7 @@
 
 void print_menu(void);
 
+//enum for edit form of complex number
 enum Form
 {
 	ALG_FORM, TRIG_FORM, EXP_FORM
@@ -335,7 +336,7 @@ void Complex<T1>::print_complex_number()
 	case EXP_FORM:
 		indication = getExpForm();
 		cout << "Exp form:";
-		cout << "z=" << indication[0] << "*e^i*" << indication[1] << "ï" << "\n";
+		cout << "z=" << indication[0] << "*e^i*" << indication[1] << "Ã¯" << "\n";
 		break;
 	}
 }
