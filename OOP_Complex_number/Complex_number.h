@@ -54,6 +54,14 @@ public:
 		setImagPart(im);
 	}
 
+	Complex<T1>() 
+	{
+		cout << "Constructor2!\n";
+		init_memory();
+		setRealPart(0);
+		setImagPart(0);
+	}
+
 	//Destructor
 	~Complex<T1>()
 	{
@@ -215,7 +223,7 @@ T1 Complex<T1>::getImgPart()
 template <class T1>
 T1* Complex<T1>::getAlgForm()
 {
-	T1* alg = new T1[2];
+	T1 alg[2];
 	alg[0] = *this->real;
 	alg[1] = *this->imag;
 	return alg;
