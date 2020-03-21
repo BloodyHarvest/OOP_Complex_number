@@ -4,6 +4,7 @@
 template<class T1>
 Form Complex<T1>::form = ALG_FORM;
 uint8_t input_key = '0';
+int key = 0;
 int form = 0;
 int part = 0;
 float real = 0;
@@ -11,12 +12,13 @@ float imag = 0;
 bool truevalue = true;
 Complex<float>* x;
 Complex<float>* y;
-
+Complex<float>* z;
 int main()
 {
     Complex<float> ariff(0, 0);
     x = new Complex<float>(5, -6);
     y = new Complex<float>(10, 8);
+    z = new Complex<float>[10];
 
     while (1)
     {
@@ -28,7 +30,7 @@ int main()
         {
             cout << "Starting program!\n";
         }
-
+        
         input_key = '0';
         form = 0;
         part = 0;
@@ -77,6 +79,7 @@ int main()
                     cout << "Enter the number to modify\n";
                     cout << "1 - X\n";
                     cout << "2 - Y\n";
+                    cout << "3 - Z[]\n";
                     cin >> input_key;
                     cout << "What part modify to?\n";
                     cout << "1 - Real\Module\n";
@@ -96,6 +99,11 @@ int main()
                         case '2':
                             y->setRealPart(real);
                             break;
+                        case '3':
+                            cout << "write x Z[x]\n";
+                            cin >> key;
+                            z[key].setRealPart(real);
+                            break;
                         default:
                             cout << "Incorrect input!\n";
                             truevalue = false;
@@ -113,6 +121,11 @@ int main()
                             break;
                         case '2':
                             y->setImagPart(imag);
+                            break;
+                        case '3':
+                            cout << "write x Z[x]\n";
+                            cin >> key;
+                            z[key].setImagPart(imag);
                             break;
                         default:
                             cout << "Incorrect input!\n";
@@ -137,6 +150,11 @@ int main()
                             case '2':
                                 y->setBothParts(real, imag);
                                 break;
+                            case '3':
+                                cout << "write x Z[x]\n";
+                                cin >> key;
+                                z[key].setBothParts(real,imag);
+                                break;
                             default:
                                 cout << "Incorrect input!\n";
                                 truevalue = false;
@@ -156,6 +174,11 @@ int main()
                                 break;
                             case '2':
                                 y->setBothtrigparts(real, imag);
+                                break;
+                            case '3':
+                                cout << "write x Z[x]\n";
+                                cin >> key;
+                                z[key].setBothtrigparts(real, imag);
                                 break;
                             default:
                                 cout << "Incorrect input!\n";
@@ -190,6 +213,11 @@ int main()
                     case '2':
                         y->print_complex_number();
                         break;
+                    case '3':
+                        cout << "write x Z[x]\n";
+                        cin >> key;
+                        z[key].print_complex_number();
+                        break;
                     default:
                         cout << "Input key is incorrect\n";
                         truevalue = false;
@@ -198,9 +226,19 @@ int main()
                     break;
 
                 case '4':
-                    if (x->getReal() && y->getReal())
+                    cout << "Write X\n";
+                    cin >> key;
+                    cout << "X:"; 
+                    z[key].print_complex_number();
+                    cout << "\n";
+                    cout << "Write Y\n";
+                    cin >> part;
+                    cout << "Y:";
+                    z[part].print_complex_number();
+                    cout << "\n";
+                    if (z[key].getReal() && z[part].getReal())
                     {
-                        ariff = *x + *y;
+                        ariff = z[key] + z[part];
                         cout << "Result(X + Y):";
                         ariff.print_complex_number();
 
@@ -212,9 +250,19 @@ int main()
                     break;
 
                 case '5':
-                    if (x->getReal() && y->getReal())
+                    cout << "Write X\n";
+                    cin >> key;
+                    cout << "X:";
+                    z[key].print_complex_number();
+                    cout << "\n";
+                    cout << "Write Y\n";
+                    cin >> part;
+                    cout << "Y:";
+                    z[part].print_complex_number();
+                    cout << "\n";
+                    if (z[key].getReal() && z[part].getReal())
                     {
-                        ariff = *x - *y;
+                        ariff = z[key] + z[part];
                         cout << "Result(X - Y):";
                         ariff.print_complex_number();
                     }
@@ -225,9 +273,19 @@ int main()
                     break;
 
                 case '6':
-                    if (x->getReal() && y->getReal())
+                    cout << "Write X\n";
+                    cin >> key;
+                    cout << "X:";
+                    z[key].print_complex_number();
+                    cout << "\n";
+                    cout << "Write Y\n";
+                    cin >> part;
+                    cout << "Y:";
+                    z[part].print_complex_number();
+                    cout << "\n";
+                    if (z[key].getReal() && z[part].getReal())
                     {
-                        ariff = *x * *y;
+                        ariff = z[key] + z[part];
                         cout << "Result(X * Y):";
                         ariff.print_complex_number();
                     }
@@ -238,9 +296,19 @@ int main()
                     break;
 
                 case '7':
-                    if (x->getReal() && y->getReal())
+                    cout << "Write X\n";
+                    cin >> key;
+                    cout << "X:";
+                    z[key].print_complex_number();
+                    cout << "\n";
+                    cout << "Write Y\n";
+                    cin >> part;
+                    cout << "Y:";
+                    z[part].print_complex_number();
+                    cout << "\n";
+                    if (z[key].getReal() && z[part].getReal())
                     {
-                        ariff = *x / *y;
+                        ariff = z[key] + z[part];
                         cout << "Result(X / Y):";
                         ariff.print_complex_number();
                     }
@@ -289,7 +357,8 @@ int main()
                     truevalue = false;
                     break;
                 }
-            } while (input_key != '0');
+            } 
+            while (input_key != '0');
             cout << "Your sure want to exit?\n" << "Y - yes\n" << "N - no\n";
             cin >> input_key;
             if (input_key == 'Y')

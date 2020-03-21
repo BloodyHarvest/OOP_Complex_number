@@ -54,6 +54,14 @@ public:
 		setImagPart(im);
 	}
 
+	Complex<T1>()
+	{
+		cout << "Constructor2!\n";
+		init_memory();
+		setRealPart(0);
+		setImagPart(0);
+	}
+
 	//Destructor
 	~Complex<T1>()
 	{
