@@ -8,7 +8,7 @@ void print_menu(void);
 //enum for edit form of complex number
 enum Form
 {
-	ALG_FORM, TRIG_FORM, EXP_FORM
+	ALG_FORM, TRIG_FORM, EXP_FORM,huyova_form
 };
 
 using namespace std;
