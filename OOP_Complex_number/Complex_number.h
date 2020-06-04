@@ -78,14 +78,40 @@ public:
 	Complex<T1> operator * (const Complex<T1>& other);
 	Complex<T1> operator / (const Complex<T1>& other);
 	bool operator == (const Complex<T1>& other);
-//	void Complex<T1> operator << (void);
+
+	friend std::ostream& operator << (std::ostream& str, const Complex<T1>& his)
+	{
+		T1* indication = new T1[2];
+		switch (form)
+		{
+		case ALG_FORM:
+			str << "Alg form:";
+			str << "z=" << *his.real << "+(" << *his.imag << "i)" << "\n";
+			break;
+		case TRIG_FORM:
+			cout << "Trig form:";
+			cout << "z=" << sqrt((*his.real * *his.real) + (*his.imag * *his.imag)) << "*(cos(" << atan2(*his.imag, *his.real) * 180 / PI << ")+sin(" << atan2(*his.imag, *his.real) * 180 / PI << ")j)" << "\n";
+			break;
+		case EXP_FORM:
+			cout << "Exp form:";
+			cout << "z=" << sqrt(*his.real * *his.real + *his.imag * *his.imag) << "*e^i*" << atan2(*his.imag, *his.real) << "pi" << "\n";
+			break;
+		}
+		return str;
+	}
+
+	friend std::ostream& operator >> (std::ostream& str, const Complex<T1>& his)
+	{
+		cout << "Write real part\n";
+		cin >> *his.real;
+		cout << "Write imag part\n";
+		cin >> *his.imag;
+		return str;
+	}
 //	void Complex<T1> operator >> (void);
 	void operator = (const Complex<T1>& other);
 
 	void raisetopower(T1 power, int mode);
-
-	//Function for print number
-	void print_complex_number();
 
 	void* operator new(size_t size)
 	{
@@ -314,6 +340,7 @@ bool Complex<T1>::operator == (const Complex<T1>& other)
 	return isTrue;
 }
 
+
 template <class T1>
 void Complex<T1>::raisetopower(T1 power, int mode)
 {
@@ -338,26 +365,4 @@ void Complex<T1>::raisetopower(T1 power, int mode)
 	setBothParts(trig[0] * cos(trig[1]), trig[0] * sin(trig[1]));
 }
 
-template<class T1>
-void Complex<T1>::print_complex_number()
-{
-	T1* indication = new T1[2];
-	switch (form)
-	{
-	case ALG_FORM:
-		indication = getAlgForm();
-		cout << "Alg form:";
-		cout << "z=" << indication[0] << "+(" << indication[1] << "i)" << "\n";
-		break;
-	case TRIG_FORM:
-		indication = getTrigForm();
-		cout << "Trig form:";
-		cout << "z=" << indication[0] << "*(cos(" << indication[1] << ")+sin(" << indication[1] << ")j)" << "\n";
-		break;
-	case EXP_FORM:
-		indication = getExpForm();
-		cout << "Exp form:";
-		cout << "z=" << indication[0] << "*e^i*" << indication[1] << "pi" << "\n";
-		break;
-	}
-}
+

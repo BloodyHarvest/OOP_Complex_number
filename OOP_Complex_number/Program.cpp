@@ -23,6 +23,7 @@ int main()
     y = new Complex<float>[1];
     z = new Complex<float>[10];
     ariff = new Complex<float>[2];
+
     while (1)
     {
         if (input_key != '0')
@@ -213,15 +214,15 @@ int main()
                     switch (input_key)
                     {
                     case '1':
-                        x[0].print_complex_number();
+                        cout << x[0];
                         break;
                     case '2':
-                        y[0].print_complex_number();
+                        cout << y[0];
                         break;
                     case '3':
                         cout << "write x Z[x]\n";
                         cin >> key;
-                        z[key].print_complex_number();
+                        cout << z[key];
                         break;
                     default:
                         cout << "Input key is incorrect\n";
@@ -234,18 +235,18 @@ int main()
                     cout << "Write X\n";
                     cin >> key;
                     cout << "X:"; 
-                    z[key].print_complex_number();
+                    cout << z[key];
                     cout << "\n";
                     cout << "Write Y\n";
                     cin >> part;
                     cout << "Y:";
-                    z[part].print_complex_number();
+                    cout << z[part];
                     cout << "\n";
                     if (z[key].getReal() && z[part].getReal())
                     {
                         ariff[0] = z[key] + z[part];
                         cout << "Result(X + Y):";
-                        ariff[0].print_complex_number();
+                        cout << ariff[0];
                     }
                     else
                     {
@@ -257,18 +258,18 @@ int main()
                     cout << "Write X\n";
                     cin >> key;
                     cout << "X:";
-                    z[key].print_complex_number();
+                    cout << z[key];
                     cout << "\n";
                     cout << "Write Y\n";
                     cin >> part;
                     cout << "Y:";
-                    z[part].print_complex_number();
+                    cout << z[part];
                     cout << "\n";
                     if (z[key].getReal() && z[part].getReal())
                     {
                         ariff[0] = z[key] + z[part];
                         cout << "Result(X - Y):";
-                        ariff[0].print_complex_number();
+                        cout << ariff[0];
                     }
                     else
                     {
@@ -280,18 +281,18 @@ int main()
                     cout << "Write X\n";
                     cin >> key;
                     cout << "X:";
-                    z[key].print_complex_number();
+                    cout << z[key];
                     cout << "\n";
                     cout << "Write Y\n";
                     cin >> part;
                     cout << "Y:";
-                    z[part].print_complex_number();
+                    cout << z[part];
                     cout << "\n";
                     if (z[key].getReal() && z[part].getReal())
                     {
                         ariff[0] = z[key] + z[part];
                         cout << "Result(X * Y):";
-                        ariff[0].print_complex_number();
+                        cout << ariff[0];
                     }
                     else
                     {
@@ -303,18 +304,18 @@ int main()
                     cout << "Write X\n";
                     cin >> key;
                     cout << "X:";
-                    z[key].print_complex_number();
+                    cout << z[key];
                     cout << "\n";
                     cout << "Write Y\n";
                     cin >> part;
                     cout << "Y:";
-                    z[part].print_complex_number();
+                    cout << z[part];
                     cout << "\n";
                     if (z[key].getReal() && z[part].getReal())
                     {
                         ariff[0] = z[key] + z[part];
                         cout << "Result(X / Y):";
-                        ariff[0].print_complex_number();
+                        cout << ariff[0];
                     }
                     else
                     {
@@ -339,11 +340,11 @@ int main()
                         {
                         case '1':
                             x[0].raisetopower(real, form);
-                            x[0].print_complex_number();
+                            cout << x[0];
                             break;
                         case '2':
                             y[0].raisetopower(real, form);
-                            y[0].print_complex_number();
+                            cout << y[0];
                             break;
                         default:
                             cout << "Input key is incorrect\n";
