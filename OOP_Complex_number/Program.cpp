@@ -5,6 +5,7 @@ template<class T1>
 Form Complex<T1>::form = ALG_FORM;
 uint8_t input_key = '0';
 int key = 0;
+int key2 = 0;
 int form = 0;
 int part = 0;
 float real = 0;
@@ -13,13 +14,15 @@ bool truevalue = true;
 Complex<float>* x;
 Complex<float>* y;
 Complex<float>* z;
+Complex<float>* ariff;
+
 int main()
 {
-    Complex<float> ariff(0, 0);
-    x = new Complex<float>(5, -6);
-    y = new Complex<float>(10, 8);
+    
+    x = new Complex<float>[1];
+    y = new Complex<float>[1];
     z = new Complex<float>[10];
-
+    ariff = new Complex<float>[2];
     while (1)
     {
         if (input_key != '0')
@@ -63,13 +66,13 @@ int main()
                     switch (form)
                     {
                     case 0:
-                        x->setForm(Form::ALG_FORM);
+                        x[0].setForm(Form::ALG_FORM);
                         break;
                     case 1:
-                        x->setForm(Form::TRIG_FORM);
+                        x[0].setForm(Form::TRIG_FORM);
                         break;
                     case 2:
-                        x->setForm(Form::EXP_FORM);
+                        x[0].setForm(Form::EXP_FORM);
                         break;
                     }
                     cout << "Form mode is switched!\n";
@@ -81,6 +84,11 @@ int main()
                     cout << "2 - Y\n";
                     cout << "3 - Z[]\n";
                     cin >> input_key;
+                    if (input_key == '3')
+                    {
+                        cout << "write x Z[x]\n";
+                        cin >> key;
+                    }
                     cout << "What part modify to?\n";
                     cout << "1 - Real\Module\n";
                     cout << "2 - Imag\Argument\n";
@@ -94,14 +102,12 @@ int main()
                         switch (input_key)
                         {
                         case '1':
-                            x->setRealPart(real);
+                            x[0].setRealPart(real);
                             break;
                         case '2':
-                            y->setRealPart(real);
+                            y[0].setRealPart(real);
                             break;
                         case '3':
-                            cout << "write x Z[x]\n";
-                            cin >> key;
                             z[key].setRealPart(real);
                             break;
                         default:
@@ -117,14 +123,12 @@ int main()
                         switch (input_key)
                         {
                         case '1':
-                            x->setImagPart(imag);
+                            x[0].setImagPart(imag);
                             break;
                         case '2':
-                            y->setImagPart(imag);
+                            y[0].setImagPart(imag);
                             break;
                         case '3':
-                            cout << "write x Z[x]\n";
-                            cin >> key;
                             z[key].setImagPart(imag);
                             break;
                         default:
@@ -145,14 +149,12 @@ int main()
                             switch (input_key)
                             {
                             case '1':
-                                x->setBothParts(real, imag);
+                                x[0].setBothParts(real, imag);
                                 break;
                             case '2':
-                                y->setBothParts(real, imag);
+                                y[0].setBothParts(real, imag);
                                 break;
                             case '3':
-                                cout << "write x Z[x]\n";
-                                cin >> key;
                                 z[key].setBothParts(real,imag);
                                 break;
                             default:
@@ -170,48 +172,51 @@ int main()
                             switch (input_key)
                             {
                             case '1':
-                                x->setBothtrigparts(real, imag);
+                                x[0].setBothtrigparts(real, imag);
                                 break;
                             case '2':
-                                y->setBothtrigparts(real, imag);
+                                y[0].setBothtrigparts(real, imag);
                                 break;
                             case '3':
-                                cout << "write x Z[x]\n";
-                                cin >> key;
                                 z[key].setBothtrigparts(real, imag);
                                 break;
+
                             default:
                                 cout << "Incorrect input!\n";
                                 truevalue = false;
                                 break;
                             }
                             break;
+
                         default:
                             cout << "Input key is incorrect\n";
                             truevalue = false;
                             break;
                         }
                         break;
+
                     default:
                         cout << "Input key is incorrect\n";
                         truevalue = false;
                         break;
-                    }
 
+                    }
                     break;
 
                 case '3':
                     cout << "Choose number display to\n";
                     cout << "1 - X\n";
                     cout << "2 - Y\n";
+                    cout << "3 - Z[]\n";
                     cin >> input_key;
+
                     switch (input_key)
                     {
                     case '1':
-                        x->print_complex_number();
+                        x[0].print_complex_number();
                         break;
                     case '2':
-                        y->print_complex_number();
+                        y[0].print_complex_number();
                         break;
                     case '3':
                         cout << "write x Z[x]\n";
@@ -238,10 +243,9 @@ int main()
                     cout << "\n";
                     if (z[key].getReal() && z[part].getReal())
                     {
-                        ariff = z[key] + z[part];
+                        ariff[0] = z[key] + z[part];
                         cout << "Result(X + Y):";
-                        ariff.print_complex_number();
-
+                        ariff[0].print_complex_number();
                     }
                     else
                     {
@@ -262,9 +266,9 @@ int main()
                     cout << "\n";
                     if (z[key].getReal() && z[part].getReal())
                     {
-                        ariff = z[key] + z[part];
+                        ariff[0] = z[key] + z[part];
                         cout << "Result(X - Y):";
-                        ariff.print_complex_number();
+                        ariff[0].print_complex_number();
                     }
                     else
                     {
@@ -285,9 +289,9 @@ int main()
                     cout << "\n";
                     if (z[key].getReal() && z[part].getReal())
                     {
-                        ariff = z[key] + z[part];
+                        ariff[0] = z[key] + z[part];
                         cout << "Result(X * Y):";
-                        ariff.print_complex_number();
+                        ariff[0].print_complex_number();
                     }
                     else
                     {
@@ -308,9 +312,9 @@ int main()
                     cout << "\n";
                     if (z[key].getReal() && z[part].getReal())
                     {
-                        ariff = z[key] + z[part];
+                        ariff[0] = z[key] + z[part];
                         cout << "Result(X / Y):";
-                        ariff.print_complex_number();
+                        ariff[0].print_complex_number();
                     }
                     else
                     {
@@ -334,12 +338,12 @@ int main()
                         switch (input_key)
                         {
                         case '1':
-                            x->raisetopower(real, form);
-                            x->print_complex_number();
+                            x[0].raisetopower(real, form);
+                            x[0].print_complex_number();
                             break;
                         case '2':
-                            y->raisetopower(real, form);
-                            y->print_complex_number();
+                            y[0].raisetopower(real, form);
+                            y[0].print_complex_number();
                             break;
                         default:
                             cout << "Input key is incorrect\n";
@@ -352,6 +356,40 @@ int main()
                         cout << "Complex numbers is not created!\n";
                     }
                     break;
+
+                case '9':
+                    for (int i = 0; i < 2; i++)
+                    {
+                        cout << "Choose "<< i+1 << " number to compare\n";
+                        cout << "1 - X\n";
+                        cout << "2 - Y\n";
+                        cout << "3 - Z[]\n";
+                        cin >> key;
+                        switch(key)
+                        {
+                        case 1:
+                            ariff[i] = x[0];
+                            break;
+                        case 2:
+                            ariff[i] = y[0];
+                            break;
+                        case 3:
+                            cout << "write x Z[x]\n";
+                            cin >> key2;
+                            ariff[i] = z[key2];
+                            break;
+                        }
+                    }
+                    if (ariff[0] == ariff[1])
+                    {
+                        cout << "These numbers are equal!\n";
+                    }
+                    else
+                    {
+                        cout << "These numbers are not equal!\n";
+                    }
+                    break;
+
                 default:
                     cout << "Input key is incorrect\n";
                     truevalue = false;

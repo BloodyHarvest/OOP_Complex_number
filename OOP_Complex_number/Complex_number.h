@@ -12,6 +12,7 @@ enum Form
 };
 
 using namespace std;
+
 template<class T1>
 class Complex
 {
@@ -76,6 +77,9 @@ public:
 	Complex<T1> operator - (const Complex<T1>& other);
 	Complex<T1> operator * (const Complex<T1>& other);
 	Complex<T1> operator / (const Complex<T1>& other);
+	bool operator == (const Complex<T1>& other);
+//	void Complex<T1> operator << (void);
+//	void Complex<T1> operator >> (void);
 	void operator = (const Complex<T1>& other);
 
 	void raisetopower(T1 power, int mode);
@@ -295,10 +299,19 @@ Complex<T1> Complex<T1>::operator / (const Complex<T1>& other)
 template <class T1>
 void Complex<T1>::operator = (const Complex<T1>& other)
 {
-	Complex<T1> arif(0, 0);
 	this->setImagPart(*other.imag);
 	this->setRealPart(*other.real);
+}
 
+template <class T1>
+bool Complex<T1>::operator == (const Complex<T1>& other)
+{
+	bool isTrue = false;
+	if (*this->real == *other.real && *this->imag == *other.imag)
+	{
+		isTrue = true;
+	}
+	return isTrue;
 }
 
 template <class T1>

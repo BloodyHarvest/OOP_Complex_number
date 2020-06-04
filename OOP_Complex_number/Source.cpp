@@ -13,5 +13,6 @@ void print_menu(void)
     cout << "|6. X * Y.                                      |\n";
     cout << "|7. X / Y.                                      |\n";
     cout << "|8. Raise to power/root                         |\n";
+    cout << "|9. Comparing numbers                           |\n";
     cout << " -----------------------------------------------\n";
 }
