@@ -14,6 +14,7 @@ void print_menu(void)
     cout << "|7. X / Y.                                      |\n";
     cout << "|8. Raise to power/root                         |\n";
     cout << "|9. Comparing numbers                           |\n";
+    cout << "|a. Operator []                                 |\n";
     cout << " -----------------------------------------------\n";
 }
 
