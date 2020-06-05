@@ -20,25 +20,24 @@ template<class T1>
 class Complex
 {
 private:
-
-	T1* real;
-	T1* imag;
-	static Form form;
-	bool* isReal;
-	void init_memory(void)
+	T1* real; //field for real part of complex number
+	T1* imag; //field for imagine part of complex number
+	static Form form; //field for saving form of complex number
+	bool* isReal; //field for check that memory is initialized
+	void init_memory(void) //function for dynamic allocate memory
 	{
-		real = new T1;
+		real = new T1; 
 		imag = new T1;
 		isReal = new bool;
 	}
 
 public:
 	//setter
-	void setRealPart(T1 re);
-	void setImagPart(T1 im);
-	void setBothParts(T1 re, T1 im);
-	void setBothtrigparts(T1 r, float angle);
-	void setForm(Form f);
+	void setRealPart(T1 re); //setting real part of complex number
+	void setImagPart(T1 im); //setting imagine part of complex number
+	void setBothParts(T1 re, T1 im); //setting both parts in algebraic form of complex number
+	void setBothtrigparts(T1 r, float angle); //setting both parts in trigonometric form of complex number
+	void setForm(Form f); //setting form for number
 
 	//getter
 	bool getReal();
@@ -114,6 +113,7 @@ public:
 	T1 operator[](int i);
 	void operator = (const Complex<T1>& other);
 	void raisetopower(T1 power, int mode);
+
 	void* operator new(size_t size)
 	{
 		void* ptr;
@@ -143,7 +143,7 @@ public:
 		return ptr;
 	}
 
-		void operator delete[](void* ptr)
+	void operator delete[](void* ptr)
 	{
 		free(ptr);
 	}
