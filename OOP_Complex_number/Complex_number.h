@@ -111,11 +111,10 @@ public:
 		cin >> *his.imag;
 		return str;
 	}
-//	void Complex<T1> operator >> (void);
+
+	T1 operator[](int i);
 	void operator = (const Complex<T1>& other);
-
 	void raisetopower(T1 power, int mode);
-
 	void* operator new(size_t size)
 	{
 		void* ptr;
@@ -341,6 +340,23 @@ bool Complex<T1>::operator == (const Complex<T1>& other)
 		isTrue = true;
 	}
 	return isTrue;
+}
+
+template <class T1>  
+T1 Complex<T1>::operator[](int i)
+{
+	if (i == 0)
+	{
+		return *this->real;
+	}
+	else if (i == 1)
+	{
+		return *this->imag;
+	}
+	else
+	{
+		throw "Invalid number in [] case";
+	}
 }
 
 

@@ -387,6 +387,21 @@ int main()
                     }
                     break;
 
+                case 'a':
+                    ariff[0] = choose_operand("for [] operator");
+                    cout << "Chosen number:" << ariff[0];
+                    cout << "Write x [x]";
+                    cin >> key;
+                    try
+                    {
+                        real = ariff[0][key];
+                        cout << real;
+                    }
+                    catch (const char* exnum)
+                    {
+                        cout << exnum;
+                    }
+                    break;
                 default:
                     cout << "Input key is incorrect\n";
                     truevalue = false;
