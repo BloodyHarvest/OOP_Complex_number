@@ -21,7 +21,7 @@ Complex<float> choose_operand(const char *message)
 {
     Complex<float>* operand;
     operand = new Complex<float>[1];
-    choose_number(message);
+    key = choose_number(message);
     switch (key)
     {
     case 1:
@@ -32,8 +32,8 @@ Complex<float> choose_operand(const char *message)
         break;
     case 3:
         cout << "write x Z[x]\n";
-        cin >> key;
-        operand[0] = z[key];
+        cin >> key2;
+        operand[0] = z[key2];
         break;
     }
     return operand[0];
@@ -248,9 +248,9 @@ int main()
 
                 case '4':
                     ariff[1] = choose_operand("first operand");
-                    cout << ariff[1];
+                    cout << "Choosen operand: " << ariff[1];
                     ariff[2] = choose_operand("second operand");
-                    cout << ariff[2];
+                    cout << "Choosen operand: " << ariff[2];
 
                     if (ariff[1].getReal() && ariff[2].getReal())
                     {
@@ -267,9 +267,9 @@ int main()
                 
                 case '5':
                     ariff[1] = choose_operand("first operand");
-                    cout << ariff[1];
+                    cout << "Choosen operand: " << ariff[1];
                     ariff[2] = choose_operand("second operand");
-                    cout << ariff[2];
+                    cout << "Choosen operand: " << ariff[2];
 
                     if (ariff[1].getReal() && ariff[2].getReal())
                     {
@@ -285,9 +285,9 @@ int main()
 
                 case '6':
                     ariff[1] = choose_operand("first operand");
-                    cout << ariff[1];
+                    cout << "Choosen operand: " << ariff[1];
                     ariff[2] = choose_operand("second operand");
-                    cout << ariff[2];
+                    cout << "Choosen operand: " << ariff[2];
 
                     if (ariff[1].getReal() && ariff[2].getReal())
                     {
@@ -303,9 +303,9 @@ int main()
 
                 case '7':
                     ariff[1] = choose_operand("first operand");
-                    cout << ariff[1];
+                    cout << "Choosen operand: " << ariff[1];
                     ariff[2] = choose_operand("second operand");
-                    cout << ariff[2];
+                    cout << "Choosen operand: " << ariff[2];
 
                     if (ariff[1].getReal() && ariff[2].getReal())
                     {

@@ -40,7 +40,7 @@ public:
 	void setForm(Form f); //setting form for number
 
 	//getter
-	bool getReal();
+	bool getReal(); 
 	Form getform();
 	T1 getRealPart();
 	T1 getImgPart();
@@ -51,7 +51,6 @@ public:
 	//Constructor
 	Complex<T1>(T1 re, T1 im)
 	{
-		cout << "Constructor!\n";
 		init_memory();
 		setRealPart(re);
 		setImagPart(im);
@@ -59,7 +58,6 @@ public:
 
 	Complex<T1>()
 	{
-		cout << "Constructor2!\n";
 		init_memory();
 		setRealPart(0);
 		setImagPart(0);
@@ -74,13 +72,19 @@ public:
 		cout << "Destructor!\n";
 	}
 
-	//Arifmetical
+	//Overloaded operators for arifmetical operations
 	Complex<T1> operator + (const Complex<T1>& other);
 	Complex<T1> operator - (const Complex<T1>& other);
 	Complex<T1> operator * (const Complex<T1>& other);
 	Complex<T1> operator / (const Complex<T1>& other);
-	bool operator == (const Complex<T1>& other);
+	void raisetopower(T1 power, int mode);
 
+	//Overloaded operators for comparing 
+	bool operator == (const Complex<T1>& other);
+	void operator = (const Complex<T1>& other);
+	T1 operator[](int i);
+
+	//Overloaded operator for print
 	friend std::ostream& operator << (std::ostream& str, const Complex<T1>& his)
 	{
 		switch (form)
@@ -101,6 +105,7 @@ public:
 		return str;
 	}
 
+	//Overloaded operator for write 
 	friend std::ostream& operator >> (std::ostream& str, const Complex<T1>& his)
 	{
 		cout << "Write real part\n";
@@ -110,10 +115,7 @@ public:
 		return str;
 	}
 
-	T1 operator[](int i);
-	void operator = (const Complex<T1>& other);
-	void raisetopower(T1 power, int mode);
-
+	//Operators for dynamic alocating and free memory
 	void* operator new(size_t size)
 	{
 		void* ptr;
@@ -149,12 +151,14 @@ public:
 	}
 };
 
+//Returns bool variable, it display that private fields is not NULL.  
 template<class T1>
-bool Complex<T1>::getReal()
+bool Complex<T1>::getReal() 
 {
 	return *this->isReal;
 }
 
+//Method for setting or modify real field
 template <class T1>
 void Complex<T1>::setRealPart(T1 re)
 {
@@ -177,6 +181,7 @@ void Complex<T1>::setRealPart(T1 re)
 	}
 }
 
+//Method for setting or modify imagine field
 template <class T1>
 void Complex<T1>::setImagPart(T1 im)
 {
@@ -199,6 +204,7 @@ void Complex<T1>::setImagPart(T1 im)
 	}
 }
 
+//Method for setting or modify all fields
 template <class T1>
 void Complex<T1>::setBothParts(T1 re, T1 im)
 {
@@ -206,6 +212,7 @@ void Complex<T1>::setBothParts(T1 re, T1 im)
 	setImagPart(im);
 }
 
+//Method for setting or modify all fields in trigonometrical form
 template <class T1>
 void Complex<T1>::setBothtrigparts(T1 r, float angle)
 {
@@ -213,6 +220,7 @@ void Complex<T1>::setBothtrigparts(T1 r, float angle)
 	setImagPart(r * sin(angle * PI / 180.0));
 }
 
+//Method for setting the form for modify/display numbers
 template <class T1>
 void Complex<T1>::setForm(Form f)
 {
@@ -233,24 +241,28 @@ void Complex<T1>::setForm(Form f)
 	}
 }
 
+//Method for getting current form
 template <class T1>
 Form Complex<T1>::getform()
 {
 	return form;
 }
 
+//Method for getting value of field real
 template <class T1>
 T1 Complex<T1>::getRealPart()
 {
 	return *this->real;
 }
 
+//Method for getting value of field imag
 template <class T1>
 T1 Complex<T1>::getImgPart()
 {
 	return *this->imag;
 }
 
+//Method for getting value of fields in algebraic form
 template <class T1>
 T1* Complex<T1>::getAlgForm()
 {
@@ -260,6 +272,7 @@ T1* Complex<T1>::getAlgForm()
 	return alg;
 }
 
+//Method for getting value of fields in exponental form
 template  <class T1>
 T1* Complex<T1>::getExpForm()
 {
@@ -286,8 +299,8 @@ T1* Complex<T1>::getTrigForm()
 template <class T1>
 Complex<T1> Complex<T1>::operator + (const Complex<T1>& other)
 {
-	Complex<float>* arif;
-	arif = new Complex<float>(0, 0);
+	Complex<T1>* arif;
+	arif = new Complex<T1>(0, 0);
 	arif->setRealPart(*this->real + *other.real);
 	arif->setImagPart(*this->imag + *other.imag);
 	return *arif;
@@ -296,8 +309,8 @@ Complex<T1> Complex<T1>::operator + (const Complex<T1>& other)
 template <class T1>
 Complex<T1> Complex<T1>::operator - (const Complex<T1>& other)
 {
-	Complex<float>* arif;
-	arif = new Complex<float>(0, 0);
+	Complex<T1>* arif;
+	arif = new Complex<T1>(0, 0);
 	arif->setRealPart(*this->real - *other.real);
 	arif->setImagPart(*this->imag - *other.imag);
 	return *arif;
@@ -306,8 +319,8 @@ Complex<T1> Complex<T1>::operator - (const Complex<T1>& other)
 template <class T1>
 Complex<T1> Complex<T1>::operator * (const Complex<T1>& other)
 {
-	Complex<float>* arif;
-	arif = new Complex<float>(0, 0);
+	Complex<T1>* arif;
+	arif = new Complex<T1>(0, 0);
 	arif->setRealPart((*this->real * *other.real) - (*this->imag * *other.imag));
 	arif->setImagPart((*this->imag * *other.real) + (*this->real * *other.imag));
 	return *arif;
@@ -316,13 +329,14 @@ Complex<T1> Complex<T1>::operator * (const Complex<T1>& other)
 template <class T1>
 Complex<T1> Complex<T1>::operator / (const Complex<T1>& other)
 {
-	Complex<float>* arif;
-	arif = new Complex<float>(0, 0);
+	Complex<T1>* arif;
+	arif = new Complex<T1>(0, 0);
 	arif->setRealPart(((*this->real * *other.real) + (*this->imag * *other.imag)) / ((*other.real * *other.real) + (*other.imag * *other.imag)));
 	arif->setImagPart(((*this->imag * *other.real) - (*this->real * *other.imag)) / ((*other.real * *other.real) + (*other.imag * *other.imag)));
 	return *arif;
 }
 
+//Method for copying values of fields within numbers
 template <class T1>
 void Complex<T1>::operator = (const Complex<T1>& other)
 {
@@ -341,6 +355,7 @@ bool Complex<T1>::operator == (const Complex<T1>& other)
 	return isTrue;
 }
 
+//Returns real field if var i is 0,imagine if 1,else throw the exception code
 template <class T1>  
 T1 Complex<T1>::operator[](int i)
 {
