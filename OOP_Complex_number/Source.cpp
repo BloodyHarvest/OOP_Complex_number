@@ -16,3 +16,15 @@ void print_menu(void)
     cout << "|9. Comparing numbers                           |\n";
     cout << " -----------------------------------------------\n";
 }
+
+int choose_number(const char *message)
+{
+    int key;
+    cout << "Choose number " << message << endl;
+    cout << "1 - X\n";
+    cout << "2 - Y\n";
+    cout << "3 - Z[]\n";
+    cin >> key;
+    return key;
+}
+

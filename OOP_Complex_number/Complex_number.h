@@ -4,6 +4,9 @@
 #define PI 3.14159265
 
 void print_menu(void);
+int choose_number(const char *message);
+
+
 
 //enum for edit form of complex number
 enum Form

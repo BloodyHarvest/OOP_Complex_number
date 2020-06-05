@@ -16,13 +16,36 @@ Complex<float>* y;
 Complex<float>* z;
 Complex<float>* ariff;
 
+
+Complex<float> choose_operand(const char *message)
+{
+    Complex<float>* operand;
+    operand = new Complex<float>[1];
+    choose_number(message);
+    switch (key)
+    {
+    case 1:
+        operand[0] = x[0];
+        break;
+    case 2:
+        operand[0] = y[0];
+        break;
+    case 3:
+        cout << "write x Z[x]\n";
+        cin >> key;
+        operand[0] = z[key];
+        break;
+    }
+    return operand[0];
+}
+
 int main()
 {
     
     x = new Complex<float>[1];
     y = new Complex<float>[1];
     z = new Complex<float>[10];
-    ariff = new Complex<float>[2];
+    ariff = new Complex<float>[3];
 
     while (1)
     {
@@ -80,15 +103,11 @@ int main()
                     break;
 
                 case '2':
-                    cout << "Enter the number to modify\n";
-                    cout << "1 - X\n";
-                    cout << "2 - Y\n";
-                    cout << "3 - Z[]\n";
-                    cin >> input_key;
-                    if (input_key == '3')
+                    key = choose_number("modify to");
+                    if (key == 3)
                     {
                         cout << "write x Z[x]\n";
-                        cin >> key;
+                        cin >> key2;
                     }
                     cout << "What part modify to?\n";
                     cout << "1 - Real\Module\n";
@@ -100,16 +119,16 @@ int main()
                     case 1:
                         cout << "Write real part\n";
                         cin >> real;
-                        switch (input_key)
+                        switch (key)
                         {
-                        case '1':
+                        case 1:
                             x[0].setRealPart(real);
                             break;
-                        case '2':
+                        case 2:
                             y[0].setRealPart(real);
                             break;
-                        case '3':
-                            z[key].setRealPart(real);
+                        case 3:
+                            z[key2].setRealPart(real);
                             break;
                         default:
                             cout << "Incorrect input!\n";
@@ -121,16 +140,16 @@ int main()
                     case 2:
                         cout << "Write imag part\n";
                         cin >> imag;
-                        switch (input_key)
+                        switch (key)
                         {
-                        case '1':
+                        case 1:
                             x[0].setImagPart(imag);
                             break;
-                        case '2':
+                        case 2:
                             y[0].setImagPart(imag);
                             break;
-                        case '3':
-                            z[key].setImagPart(imag);
+                        case 3:
+                            z[key2].setImagPart(imag);
                             break;
                         default:
                             cout << "Incorrect input!\n";
@@ -147,16 +166,16 @@ int main()
                             cin >> real;
                             cout << "Write imag part\n";
                             cin >> imag;
-                            switch (input_key)
+                            switch (key)
                             {
-                            case '1':
+                            case 1:
                                 x[0].setBothParts(real, imag);
                                 break;
-                            case '2':
+                            case 2:
                                 y[0].setBothParts(real, imag);
                                 break;
-                            case '3':
-                                z[key].setBothParts(real,imag);
+                            case 3:
+                                z[key2].setBothParts(real,imag);
                                 break;
                             default:
                                 cout << "Incorrect input!\n";
@@ -170,16 +189,16 @@ int main()
                             cin >> real;
                             cout << "Write angle\n";
                             cin >> imag;
-                            switch (input_key)
+                            switch (key)
                             {
-                            case '1':
+                            case 1:
                                 x[0].setBothtrigparts(real, imag);
                                 break;
-                            case '2':
+                            case 2:
                                 y[0].setBothtrigparts(real, imag);
                                 break;
-                            case '3':
-                                z[key].setBothtrigparts(real, imag);
+                            case 3:
+                                z[key2].setBothtrigparts(real, imag);
                                 break;
 
                             default:
@@ -205,21 +224,17 @@ int main()
                     break;
 
                 case '3':
-                    cout << "Choose number display to\n";
-                    cout << "1 - X\n";
-                    cout << "2 - Y\n";
-                    cout << "3 - Z[]\n";
-                    cin >> input_key;
+                    key = choose_number("display to");
 
-                    switch (input_key)
+                    switch (key)
                     {
-                    case '1':
+                    case 1:
                         cout << x[0];
                         break;
-                    case '2':
+                    case 2:
                         cout << y[0];
                         break;
-                    case '3':
+                    case 3:
                         cout << "write x Z[x]\n";
                         cin >> key;
                         cout << z[key];
@@ -232,19 +247,14 @@ int main()
                     break;
 
                 case '4':
-                    cout << "Write X\n";
-                    cin >> key;
-                    cout << "X:"; 
-                    cout << z[key];
-                    cout << "\n";
-                    cout << "Write Y\n";
-                    cin >> part;
-                    cout << "Y:";
-                    cout << z[part];
-                    cout << "\n";
-                    if (z[key].getReal() && z[part].getReal())
+                    ariff[1] = choose_operand("first operand");
+                    cout << ariff[1];
+                    ariff[2] = choose_operand("second operand");
+                    cout << ariff[2];
+
+                    if (ariff[1].getReal() && ariff[2].getReal())
                     {
-                        ariff[0] = z[key] + z[part];
+                        ariff[0] = ariff[1] + ariff[2];
                         cout << "Result(X + Y):";
                         cout << ariff[0];
                     }
@@ -254,20 +264,16 @@ int main()
                     }
                     break;
 
+                
                 case '5':
-                    cout << "Write X\n";
-                    cin >> key;
-                    cout << "X:";
-                    cout << z[key];
-                    cout << "\n";
-                    cout << "Write Y\n";
-                    cin >> part;
-                    cout << "Y:";
-                    cout << z[part];
-                    cout << "\n";
-                    if (z[key].getReal() && z[part].getReal())
+                    ariff[1] = choose_operand("first operand");
+                    cout << ariff[1];
+                    ariff[2] = choose_operand("second operand");
+                    cout << ariff[2];
+
+                    if (ariff[1].getReal() && ariff[2].getReal())
                     {
-                        ariff[0] = z[key] + z[part];
+                        ariff[0] = ariff[1] - ariff[2];
                         cout << "Result(X - Y):";
                         cout << ariff[0];
                     }
@@ -278,19 +284,14 @@ int main()
                     break;
 
                 case '6':
-                    cout << "Write X\n";
-                    cin >> key;
-                    cout << "X:";
-                    cout << z[key];
-                    cout << "\n";
-                    cout << "Write Y\n";
-                    cin >> part;
-                    cout << "Y:";
-                    cout << z[part];
-                    cout << "\n";
-                    if (z[key].getReal() && z[part].getReal())
+                    ariff[1] = choose_operand("first operand");
+                    cout << ariff[1];
+                    ariff[2] = choose_operand("second operand");
+                    cout << ariff[2];
+
+                    if (ariff[1].getReal() && ariff[2].getReal())
                     {
-                        ariff[0] = z[key] + z[part];
+                        ariff[0] = ariff[1] * ariff[2];
                         cout << "Result(X * Y):";
                         cout << ariff[0];
                     }
@@ -301,19 +302,14 @@ int main()
                     break;
 
                 case '7':
-                    cout << "Write X\n";
-                    cin >> key;
-                    cout << "X:";
-                    cout << z[key];
-                    cout << "\n";
-                    cout << "Write Y\n";
-                    cin >> part;
-                    cout << "Y:";
-                    cout << z[part];
-                    cout << "\n";
-                    if (z[key].getReal() && z[part].getReal())
+                    ariff[1] = choose_operand("first operand");
+                    cout << ariff[1];
+                    ariff[2] = choose_operand("second operand");
+                    cout << ariff[2];
+
+                    if (ariff[1].getReal() && ariff[2].getReal())
                     {
-                        ariff[0] = z[key] + z[part];
+                        ariff[0] = ariff[1] / ariff[2];
                         cout << "Result(X / Y):";
                         cout << ariff[0];
                     }
@@ -324,38 +320,38 @@ int main()
                     break;
 
                 case '8':
-                    if (x->getReal() && y->getReal())
-                    {
-                        cout << "Choose the number\n";
-                        cout << "1 - X\n";
-                        cout << "2 - Y\n";
-                        cin >> input_key;
+                        key = choose_number("to power/root");
+                        if (key == 3)
+                        {
+                            cout << "write x Z[x]\n";
+                            cin >> key2;
+                        }
                         cout << "Choose mode\n";
                         cout << "0 - Power\n";
                         cout << "1 - Root\n";
                         cin >> form;
                         cout << "Enter power\n";
                         cin >> real;
-                        switch (input_key)
+                        switch (key)
                         {
-                        case '1':
+                        case 1:
                             x[0].raisetopower(real, form);
                             cout << x[0];
                             break;
-                        case '2':
+                        case 2:
                             y[0].raisetopower(real, form);
                             cout << y[0];
+                            break;
+                        case 3:
+                            z[key2].raisetopower(real, form);
+                            cout << z[key2];
                             break;
                         default:
                             cout << "Input key is incorrect\n";
                             truevalue = false;
                             break;
                         }
-                    }
-                    else
-                    {
-                        cout << "Complex numbers is not created!\n";
-                    }
+                    
                     break;
 
                 case '9':
