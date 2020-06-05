@@ -84,7 +84,6 @@ public:
 
 	friend std::ostream& operator << (std::ostream& str, const Complex<T1>& his)
 	{
-		T1* indication = new T1[2];
 		switch (form)
 		{
 		case ALG_FORM:

@@ -42,8 +42,8 @@ Complex<float> choose_operand(const char *message)
 int main()
 {
     
-    x = new Complex<float>[1];
-    y = new Complex<float>[1];
+    x = new Complex<float>;
+    y = new Complex<float>;
     z = new Complex<float>[10];
     ariff = new Complex<float>[3];
 
@@ -90,13 +90,13 @@ int main()
                     switch (form)
                     {
                     case 0:
-                        x[0].setForm(Form::ALG_FORM);
+                        x->setForm(Form::ALG_FORM);
                         break;
                     case 1:
-                        x[0].setForm(Form::TRIG_FORM);
+                        x->setForm(Form::TRIG_FORM);
                         break;
                     case 2:
-                        x[0].setForm(Form::EXP_FORM);
+                        x->setForm(Form::EXP_FORM);
                         break;
                     }
                     cout << "Form mode is switched!\n";
@@ -122,10 +122,10 @@ int main()
                         switch (key)
                         {
                         case 1:
-                            x[0].setRealPart(real);
+                            x->setRealPart(real);
                             break;
                         case 2:
-                            y[0].setRealPart(real);
+                            y->setRealPart(real);
                             break;
                         case 3:
                             z[key2].setRealPart(real);
@@ -143,10 +143,10 @@ int main()
                         switch (key)
                         {
                         case 1:
-                            x[0].setImagPart(imag);
+                            x->setImagPart(imag);
                             break;
                         case 2:
-                            y[0].setImagPart(imag);
+                            y->setImagPart(imag);
                             break;
                         case 3:
                             z[key2].setImagPart(imag);
@@ -169,10 +169,10 @@ int main()
                             switch (key)
                             {
                             case 1:
-                                x[0].setBothParts(real, imag);
+                                x->setBothParts(real, imag);
                                 break;
                             case 2:
-                                y[0].setBothParts(real, imag);
+                                y->setBothParts(real, imag);
                                 break;
                             case 3:
                                 z[key2].setBothParts(real,imag);
@@ -192,10 +192,10 @@ int main()
                             switch (key)
                             {
                             case 1:
-                                x[0].setBothtrigparts(real, imag);
+                                x->setBothtrigparts(real, imag);
                                 break;
                             case 2:
-                                y[0].setBothtrigparts(real, imag);
+                                y->setBothtrigparts(real, imag);
                                 break;
                             case 3:
                                 z[key2].setBothtrigparts(real, imag);
@@ -335,11 +335,11 @@ int main()
                         switch (key)
                         {
                         case 1:
-                            x[0].raisetopower(real, form);
+                            x->raisetopower(real, form);
                             cout << x[0];
                             break;
                         case 2:
-                            y[0].raisetopower(real, form);
+                            y->raisetopower(real, form);
                             cout << y[0];
                             break;
                         case 3:
